@@ -4,32 +4,11 @@ Uses Jumbotron Uses form-group Use column dynamic styling
 {{> navbar}}
 <div class="jumbotron jumbotron-fluid dive-display-header">
     <div class="container">
-        <h1 class="display-4">Register for Divetastic Dive log</h1>
+        <h1 class="display-4">Register for Farm Work</h1>
     </div>
 </div>
 <div class="container">
     <form action="/diver/register" method="POST"  class="needs-validation" novalidate>
-        <div class="form-group col-md-5">
-            <label for="firstName">First Name:</label>
-            <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First" required>
-            <div class="valid-feedback">
-                Looks good!
-            </div>
-        </div>
-        <div class="form-group col-md-5">
-            <label for="lastName">Last Name:</label>
-            <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last" required>
-            <div class="valid-feedback">
-                Looks good!
-            </div>
-        </div>
-        <div class="form-group col-md-5">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" name="email" id="email" placeholder="email" required>
-            <div class="valid-feedback">
-                Looks good!
-            </div>
-        </div>
         <div class="form-group col-md-5">
             <label for="username">Username:</label>
             <input type="text" class="form-control" name="username" id="username" placeholder="username" required>
@@ -40,6 +19,13 @@ Uses Jumbotron Uses form-group Use column dynamic styling
         <div class="form-group col-md-5">
             <label for="username">Password</label>
             <input type="password" class="form-control" name="password" id="password" placeholder="password" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="form-group col-md-5">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="email" required>
             <div class="valid-feedback">
                 Looks good!
             </div>

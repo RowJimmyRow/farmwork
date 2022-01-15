@@ -1,32 +1,23 @@
-<!-- Adapted from Bootstrap https://getbootstrap.com/docs/4.5/getting-started/introduction/ 
-Uses dropdown (side) and carousel with indicators with background images instead if img
--->
-
 {{>navbar}}
 <div class="landing_page">
     <div id="landing-header">
-        <h1>Divetastic Dive log</h1>
+        <h1>Farm labor site where Workers find work and work finds Workers</h1>
         <!-- Default dropright button Adapted from Bootstrap https://getbootstrap.com/docs/4.5/getting-started/introduction/-->
         <div class="btn-group dropright">
           <button type="button" class="btn-1 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Where would you like to go?
           </button>
           <div class="dropdown-menu">
-            {{#unless currentUser}}
-				<a class="dropdown-item" href="/diver/login">Login!</a>
-				<a class="dropdown-item" href="/diver/register">Register</a>
-			{{else}}
-				<a class="dropdown-item" href="/dives">Go To Your Dives</a>
-                <a class="dropdown-item" href="/diver/logout">Logout</a>
-			{{/unless}}
-            <a class="dropdown-item" href="/locations/">See all the Locations tracked on Divetastic</a>
-            <a class="dropdown-item" href="/fish">See all the Fish tracked on Divetastic</a>
+              {{#unless currentUser}}
+                <a class="dropdown-item" href="/login">Login!</a>
+                <a class="dropdown-item" href="/register">Register</a>
+              {{/unless}}
           </div>
         </div>
     </div>
 
 
-<div id="divetasticCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="4000" data-pause="false">
+{{!-- <div id="divetasticCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="4000" data-pause="false">
   <div class="carousel-inner">
     <div class="carousel-item active" style="background-image: url('https://i.imgur.com/Fc7GQ0A.jpg');"></div>
     <div class="carousel-item" style="background-image: url('https://i.imgur.com/3CQoD2l.jpg');"></div>
@@ -44,7 +35,7 @@ Uses dropdown (side) and carousel with indicators with background images instead
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</div>
+</div> --}}
 
 
 

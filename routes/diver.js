@@ -16,61 +16,6 @@ const s3 = new AWS.S3({
     secretAccessKey: secretKey
 });
 
-    
-// Render page for registering for website
-router.get("/register", (request, response) => {
-    response.render("diver/register");
-    });
-
-// Update database with new registered diver
-router.post("/register", async (request, response) => {
-    const {firstName, lastName, email, username, password} = request.body;
-    const hashPassword = await bcrypt.hash(password, 12);
-    const newUser = [username, hashPassword, firstName, lastName, email];
-    mysql.pool.query("INSERT INTO Users (username, password, firstName, lastName, email) VALUES(?, ?, ?, ?, ?)", newUser , async (error, result) => {
-        if(error) {
-            console.log(error);
-        } else {
-            response.render("dives/dives");
-        }
-    });
-});
-
-// Login for existing user
-router.get("/login", (request, response) => {
-    response.render("diver/login", {referer:request.headers.referer});
-});
-
-// POST route to execute login
-router.post("/login", (request, response) => {
-    const {username, password} = request.body;
-    mysql.pool.query("SELECT * FROM Users WHERE username = ?", username, async (error, rows, fields) => {
-        if(error) {
-            console.log(error)
-        } else {
-                try {
-                    const validLogin = await bcrypt.compare(password, rows[0].password)
-                    if (validLogin) {
-                        request.session.user_id = rows[0].username;
-                        response.redirect("/dives")
-                    } else {
-                        response.redirect("/diver/login")
-                    }
-                } catch(e) {
-                    response.redirect("/diver/login")
-                }
-            } 
-    });
-}); 
-
-
-// logout user
-router.get("/logout", (request, response) => {
-    request.session.user_id = null;
-    response.redirect("/");
-});
-
-
 // Render page for editing diver information
 router.get("/edit", helperFunc.isLoggedIn, (request, response) => {
     mysql.pool.query("SELECT * FROM Users WHERE username = ?", request.session.user_id, (error, rows, fields) => {

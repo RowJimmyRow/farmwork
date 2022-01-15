@@ -42,7 +42,7 @@ app.engine('hbs', handlebars({
 }));
 
 // set secret.  
-const secret = process.env.SECRET || "diving is crazy";
+const secret = process.env.SECRET || "Farming is crazy";
 
 const sessionConfig = {
   name: 'session',
@@ -67,7 +67,6 @@ app.use((request, response, next) => {
 
 // Main route calls
 app.use(indexRoutes);
-app.use("/diver", diverRoutes);
 
 // Error route calls
 app.use((request, response) => {
