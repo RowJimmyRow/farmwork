@@ -1,29 +1,18 @@
-// Main App file for Divetastic Dive log 
-// CS340 Project for Winter 2020.  
-// Group 60 with Devin Leung and John Teeter
-//test
+// Main App file
 
 const express = require("express"),
   handlebars = require("express-handlebars"),
   methodOverride = require("method-override"),
   session = require("express-session"),
-  mysql = require('./dbcon.js'),
   bcrypt = require('bcrypt');
 
-// // All of the different database models required
+// // Probably will need to create model files for dynamo DB?  I'm not sure
 // const Hikes = require("./models/hikes"),
 //       User = require("./models/user"),
 //       Image = require("./models/image");
 
-// // routes grouped by use
-const indexRoutes = require("./routes/index"),
-  diveRoutes = require("./routes/dives"),
-  uploadRoutes = require("./routes/upload.js"),
-  imageRoutes = require("./routes/images"),
-  diverRoutes = require("./routes/diver"),
-  fishRoutes = require("./routes/fish"),
-  featureRoutes = require("./routes/features.js"),
-  locationRoutes = require("./routes/locations.js");
+// // routes files grouped by use (will be many)
+const indexRoutes = require("./routes/index")
 
 // handlebar helpers stored in different file
 const hbs = require("./helperFunc/handlebarHelpers")
@@ -79,12 +68,6 @@ app.use((request, response, next) => {
 // Main route calls
 app.use(indexRoutes);
 app.use("/diver", diverRoutes);
-app.use("/dives", diveRoutes);
-app.use("/images", imageRoutes);
-app.use("/upload", uploadRoutes);
-app.use("/fish", fishRoutes);
-app.use("/features", featureRoutes);
-app.use("/locations", locationRoutes);
 
 // Error route calls
 app.use((request, response) => {
