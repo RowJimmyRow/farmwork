@@ -1,0 +1,47 @@
+<!-- Adapted from Bootstrap https://getbootstrap.com/docs/4.5/getting-started/introduction/ 
+Uses navbar with expander/collapse for dynamic styling  Uses dropdown-menu
+-->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+	<a class="navbar-brand mr-auto" href="/">Divetastic dive log</a>
+
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarDivetastic"
+		aria-controls="navbarDivetastic" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarDivetastic">
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					User Info
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+					<a class="dropdown-item" href="/diver/images">See Diver Images</a>
+					<a class="dropdown-item" href="/diver/certs">See Certs</a>
+					<a class="dropdown-item" href="/diver/edit">Edit User</a>
+				</div>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarindexLink" role="button" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false">
+					Site Indexes
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+					<a class="dropdown-item" href="/locations">Go to Locations</a>
+					<a class="dropdown-item" href="/dives">Go to Dives</a>
+					<a class="dropdown-item" href="/fish">Go to Fish</a>
+					<a class="dropdown-item" href="/features">Go to Features</a>
+
+				</div>
+			</li>
+			{{#unless currentUser}}
+			<li class="nav-item"><a class="nav-link" href="/diver/login">Login!</a></li>
+			<li class="nav-item"><a class="nav-link" href="/diver/register">Register</a></li>
+			{{else}}
+			<li class="nav-item"><a class="nav-link" href="/diver/logout">Logout</a></li>
+			{{/unless}}
+		</ul>
+	</div>
+
+</nav>

@@ -1,0 +1,33 @@
+<!-- Adapted from Bootstrap https://getbootstrap.com/docs/4.5/getting-started/introduction/ 
+Uses Jumbotron Uses form-group Use column dynamic styling
+-->
+{{> navbar}}
+<div class="jumbotron jumbotron-fluid dive-display-header">
+    <div class="container">
+        <h1 class="display-4">All of {{currentUser}}'s diver's certs tracked on Divetastic</h1>
+    </div>
+</div>
+<a class="btn-1 btn-lg" href="/diver/addCert" role="button">Add a new Certification</a>
+<div class="container-fluid">
+    <div class="row">  
+        {{#each certs}}
+            <div class="card col-sm-6 col-md-4 dive-card">
+                <p><h4>{{this.certNum}}</h4></p>
+                <div class="card-body">
+                <h5 class="card-title">{{this.description}}</h5>
+                    <p>
+                    <form action="/diver/editCert" method="POST">
+                        <input type = "hidden" name = "certID" value = "{{this.certID}}" />
+                        <button class="btn-1 btn-sm">Update Certification</button>
+                    </form>
+                    <form action="/diver/deleteCert?_method=DELETE" method="POST">
+                        <input type = "hidden" name = "certID" value = "{{this.certID}}" />
+                        <button class="btn-1 btn-sm">Delete Certification</button>
+                    </form>
+                    </p>
+                        
+                </div>
+            </div>  
+        {{/each}}
+    </div>    
+</div>

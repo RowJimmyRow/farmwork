@@ -1,0 +1,55 @@
+<!-- Adapted from Bootstrap https://getbootstrap.com/docs/4.5/getting-started/introduction/ 
+Uses Jumbotron Uses form-group Use needs-validation
+-->
+{{> navbar}}
+<h1>this adds a dive</h1>
+<div class="jumbotron jumbotron-fluid dive-display-header">
+    <div class="container">
+        <h1 class="display-4">Add A Dive</h1>
+    </div>
+</div>
+<div class="container">
+    <form action="/dives/new" method="POST"  class="needs-validation" novalidate>
+        <div class="form-group col-md-5">
+            <label for="date">Date of Dive</label>
+            <input type="date" class="form-control" name="date" id="date" placeholder="Date of Dive" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="form-group col-md-5">
+            <select class="custom-select" id="locationID" name="locationID">
+                <option selected>Choose location...</option>
+                {{#each locations}}
+                    <option value="{{this.locationID}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div>
+            <a href="/locations/new">Add new location</a>
+        </div>
+        <div class="form-group col-md-5">
+            <label for="timeDuration">Duration of Dive in minutes</label>
+            <input type="number" class="form-control" name="timeDuration" id="timeDuration" placeholder="Duration">
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="form-group col-md-5">
+            <label for="visibility">Visibility of Water</label>
+            <input type="text" class="form-control" name="visibility" id="visibility" placeholder="Visibility" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="form-group col-md-5">
+            <label for="temperature">Temperature of Water</label>
+            <input type="number" class="form-control" name="temperature" id="temperature" placeholder="Temperature" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+
+        <button class="btn btn-primary btn-sm">Add Dive</button>
+    </form>
+</div>

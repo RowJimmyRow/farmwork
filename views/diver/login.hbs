@@ -1,0 +1,34 @@
+<!-- Adapted from Bootstrap https://getbootstrap.com/docs/4.5/getting-started/introduction/ 
+Uses Jumbotron Uses form-group Use column dynamic styling
+-->
+{{> navbar}}
+<div class="jumbotron jumbotron-fluid dive-display-header">
+    <div class="container">
+        <h1 class="display-4">Login for Divetastic Dive log</h1>
+    </div>
+</div>
+<div class="container">
+    <form action="/diver/login" method="POST" class="needs-validation" novalidate>
+        <div class="form-group col-md-5">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" name="username" id="username" placeholder="username" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+
+        <div class="form-group col-md-5">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="password" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <input type="hidden" name="referer" value="{{referer}}">
+        <input class="btn-1" type="submit" value="Login"> 
+        
+    </form>
+    <a href="/diver/register"><button class="btn-1">Or go to register!</button></a>
+</div>
+
+

@@ -1,0 +1,51 @@
+<!-- Adapted from Bootstrap https://getbootstrap.com/docs/4.5/getting-started/introduction/ 
+Uses Jumbotron uses container
+-->
+{{> navbar}}
+<h1>This is a location edit page</h1>
+<div class="jumbotron jumbotron-fluid dive-display-header">
+    <div class="container">
+        <h1 class="display-4">Edit a Location</h1>
+    </div>
+</div>
+<div class="container">
+    <form action="/locations/edit?_method=PUT" method="POST"  class="needs-validation" novalidate>
+        <div class="form-group col-md-5">
+            <label for="name">Name of Location</label>
+            <input type="text" class="form-control" name="name" id="name" value="{{location.name}}" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="form-group col-md-5">
+            <label for="name">Location's Nearest City</label>
+            <input type="text" class="form-control" name="locCity" id="locCity" value="{{location.locCity}}" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="form-group col-md-5">
+            <label for="name">Location's State</label>
+            <input type="text" class="form-control" name="locState" id="locState" default="NULL" value="{{location.locState}}">
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="form-group col-md-5">
+            <label for="location">Location Country</label>
+            <input type="text" class="form-control" name="locCountry" id="locCountry" value="{{location.locCountry}}" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="form-group col-md-5">
+            <label for="description">Description</label>
+            <input type="textarea" class="form-control" name="description" id="description" value="{{location.description}}" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <input type = "hidden" name = "locationID" value = "{{location.locationID}}" />
+        <button class="btn btn-primary btn-sm">Update Location</button>
+    </form>
+</div>

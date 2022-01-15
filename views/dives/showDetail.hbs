@@ -1,0 +1,98 @@
+<!-- Adapted from Bootstrap https://getbootstrap.com/docs/4.5/getting-started/introduction/ 
+Uses Jumbotron Use column dynamic styling Use cards
+-->
+{{> navbar}}
+<div class="jumbotron jumbotron-fluid dive-display-header ">
+    <div class="container">
+        <h1 class="display-4">Display a Dive</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="form-group col-md-5">
+        <label for="date">Date of Dive</label>
+        <input type="date" class="form-control" name="date" id="date" value="{{dive.date}}" required readonly>
+    </div>
+    <div class="form-group col-md-5">
+        <label for="Location">Dive location</label>
+        <input type="text" class="form-control" name="location" id="location" value="{{dive.name}}" required readonly>
+    </div>
+    <div class="form-group col-md-5">
+        <label for="timeDuration">Duration of Dive in minutes</label>
+        <input type="number" class="form-control" name="timeDuration" id="timeDuration" value="{{dive.timeDuration}}" readonly>
+    </div>
+    <div class="form-group col-md-5">
+        <label for="visibility">Visibility of Water</label>
+        <input type="text" class="form-control" name="visibility" id="visibility" value="{{dive.visibility}}" required readonly>
+    </div>
+    <div class="form-group col-md-5">
+        <label for="temperature">Temperature of Water</label>
+        <input type="number" class="form-control" name="temp" id="temp" value="{{dive.temp}}" required readonly>
+    </div>
+
+    <form action="/images/new" method="POST">
+        <input type="hidden" name="diveID" value="{{dive.diveID}}" />
+        <input type="hidden" name="diverID" value="{{dive.diverID}}" />
+        <button class="btn-1 btn-lg">Add an Image to this Dive</button>
+    </form>
+
+    <form action="/dives/addMoreFish" method="POST">
+        <input type="hidden" name="diveID" value="{{dive.diveID}}" />
+        <button class="btn-1 btn-lg">Add a few more fish to this Dive</button>
+    </form>
+</div>
+    <h2>The images you took on the dive are:</h2>
+    <div class="container-fluid">
+        <div class="row">
+            {{#each dive.images}}
+            <div class="card col-sm-6 col-md-4 dive-card">
+                <div class="card-body">
+                    <img src="{{this.imageURL}}" alt="">
+                    <p>{{this.description}}</p>
+                    <form action="/dives/editImage" method="POST">
+                        <input type="hidden" name="diveID" value="{{this.diveID}}" />
+                        <input type="hidden" name="imageID" value="{{this.imageID}}" />
+                        <button class="btn-1 btn-sm">Update Image</button>
+                    </form>
+                    <form action="/images/deleteImage?_method=DELETE" method="POST">
+                        <input type="hidden" name="diveID" value="{{this.diveID}}" />
+                        <input type="hidden" name="imageID" value="{{this.imageID}}" />
+                        <button class="btn-1 btn-sm">Delete Image</button>
+                    </form>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <h2>The Fish you saw on your dive are:</h2>
+    <div class="container-fluid">
+        <div class="row">
+            {{#each dive.fish}}
+            <div class="card col-sm-6 col-md-4 dive-card">
+                <div class="card-body">
+                    <h2>{{this.commonName}}</h2>
+                    <img src="{{this.imageURL}}" alt="">
+                    <form action="/dives/deleteFish?_method=DELETE" method="POST">
+                        <input type="hidden" name="diveFishID" value="{{this.diveFishID}}" />
+                        <input type="hidden" name="diveID" value="{{this.diveID}}" />
+                        <button class="btn-1 btn-sm">Remove This Fish from Dive</button>
+                    </form>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <h2>Features you could have seen at this dive location:</h2>
+    <div class="container-fluid">
+        <div class="row">
+            {{#each dive.features}}
+            <div class="card col-sm-6 col-md-4 dive-card">
+                <div class="card-body">
+                    <h5>{{this.locFeatureName}}</h5>
+                    <img src="{{this.featureURL}}" alt="">
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>

@@ -1,0 +1,61 @@
+<!-- Adapted from Bootstrap https://getbootstrap.com/docs/4.5/getting-started/introduction/ 
+Uses Jumbotron uses container
+-->
+{{> navbar}}
+<div class="jumbotron jumbotron-fluid dives-header">
+    <div class="container " >
+        <h1 class="display-4" style=" color: rgb(206, 216, 238);">All of {{currentUser}}'s dives tracked on Divetastic</h1>
+    </div>
+</div>
+<div class="container">
+    <a class="btn-1 btn-lg" href="/dives/new" role="button">Add a new dive</a>
+  <ul>
+    <li>
+      <p>When adding a new dive you will be asked to enter the text/location associated to the dive and then it will cascade to a new page to upload pictures that will be linked to the dive and then it will cascade to a page to select fish seen on the dive</p>
+    </li>
+    <li>
+      <p>When you click on Dive Details, you will be shown all of the images associated with that dive, given the opportunity to add new/edit/delete the images associated with the dive.  You will also be shown the fish you have associated with the dive and be given the opportunity to add/remove fish</p>
+    </li>
+  </ul>
+  <div class="form-group col-md-5">
+      <select class="custom-select" id="searchDiveID" name="locationID">
+          <option selected value="*">Show All Dives</option>
+          {{#each locations}}
+              <option value="{{@key}}">{{this}}</option>
+          {{/each}}
+      </select> 
+      <button type="submit" id="searchDives">Search for dives at selected location</button>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row" id="displayDives">
+  {{#each dives}}
+  <div class="card cardIndex col-sm-6 col-md-4 col-lg-4 dive-card">
+        <div class="card-body">
+          <h4 class="card-title" style="text-shadow: 1px 1px 1px #000;">Dive was at {{this.name}}</h4>
+            <ul class="dive-ul">
+              <li class="dive-li">The location was: {{this.locCity}}, {{this.locState}} in {{this.locCountry}}</li>
+                <li class="dive-li">{{this.date}}</li>
+            </ul>
+              <form action="/dives/details" method="POST">
+                  <input type = "hidden" name = "diveID" value = "{{this.diveID}}" />
+                  <button class="btn-1">See Dive details</button>
+              </form>
+
+              <form action="/dives/edit" method="POST">
+                  <input type = "hidden" name = "diveID" value = "{{this.diveID}}" />
+                  <button class="btn-1">Update Dive</button>
+              </form>
+              <form action="/dives/deleteDive?_method=DELETE" method="POST">
+                  <input type = "hidden" name = "diveID" value = "{{this.diveID}}" />
+                  <button class="btn-1">Delete dive</button>
+              </form>
+            </p>
+                
+        </div>  
+  </div>
+  {{/each}}
+</div>
+</div>
+<script src="pageSearch.js"></script>

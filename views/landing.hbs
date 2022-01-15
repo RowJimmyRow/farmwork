@@ -1,0 +1,53 @@
+<!-- Adapted from Bootstrap https://getbootstrap.com/docs/4.5/getting-started/introduction/ 
+Uses dropdown (side) and carousel with indicators with background images instead if img
+-->
+
+{{>navbar}}
+<div class="landing_page">
+    <div id="landing-header">
+        <h1>Divetastic Dive log</h1>
+        <!-- Default dropright button Adapted from Bootstrap https://getbootstrap.com/docs/4.5/getting-started/introduction/-->
+        <div class="btn-group dropright">
+          <button type="button" class="btn-1 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Where would you like to go?
+          </button>
+          <div class="dropdown-menu">
+            {{#unless currentUser}}
+				<a class="dropdown-item" href="/diver/login">Login!</a>
+				<a class="dropdown-item" href="/diver/register">Register</a>
+			{{else}}
+				<a class="dropdown-item" href="/dives">Go To Your Dives</a>
+                <a class="dropdown-item" href="/diver/logout">Logout</a>
+			{{/unless}}
+            <a class="dropdown-item" href="/locations/">See all the Locations tracked on Divetastic</a>
+            <a class="dropdown-item" href="/fish">See all the Fish tracked on Divetastic</a>
+          </div>
+        </div>
+    </div>
+
+
+<div id="divetasticCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="4000" data-pause="false">
+  <div class="carousel-inner">
+    <div class="carousel-item active" style="background-image: url('https://i.imgur.com/Fc7GQ0A.jpg');"></div>
+    <div class="carousel-item" style="background-image: url('https://i.imgur.com/3CQoD2l.jpg');"></div>
+    <div class="carousel-item" style="background-image: url('https://i.imgur.com/fuRAgXN.jpg');"></div>
+    <div class="carousel-item" style="background-image: url('https://i.imgur.com/skZV13S.jpg');"></div>
+    <div class="carousel-item" style="background-image: url('https://i.imgur.com/UQ4ZAqu.jpg');"></div>
+
+
+  </div>
+  <a class="carousel-control-prev carouselButton" href="#divetasticCarousel" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next carouselButton" href="#divetasticCarousel" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+
+
+
+

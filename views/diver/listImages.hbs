@@ -1,0 +1,33 @@
+<!-- Adapted from Bootstrap https://getbootstrap.com/docs/4.5/getting-started/introduction/ 
+Uses Jumbotron Uses form-group Use column dynamic styling
+-->
+{{> navbar}}
+<div class="jumbotron jumbotron-fluid dive-display-header">
+    <div class="container">
+        <h1 class="display-4">All of {{currentUser}}'s diver's Images tracked on Divetastic that are not related to a specific Dive</h1>
+    </div>
+</div>
+<a class="btn btn-success btn-lg" href="/diver/addImage" role="button">Add a new Image</a>
+<div class="container-fluid">
+    <div class="row">
+        {{#each images}}
+            <div class="card col-sm-6 col-md-4 dive-card">
+                <img src="{{this.imageURL}}" alt="">
+                <div class="card-body">
+                <h5 class="card-title">{{this.description}}</h5>
+                    <p>
+                    <form action="/diver/editImage" method="POST">
+                        <input type = "hidden" name = "imageID" value = "{{this.imageID}}" />
+                        <button class="btn-1 btn-sm">Update Image</button>
+                    </form>
+                    <form action="/diver/deleteImage?_method=DELETE" method="POST">
+                        <input type = "hidden" name = "imageID" value = "{{this.imageID}}" />
+                        <button class="btn-1 btn-sm">Delete Image</button>
+                    </form>
+                    </p>
+                        
+                </div>
+            </div>  
+        {{/each}}
+    </div>    
+</div>

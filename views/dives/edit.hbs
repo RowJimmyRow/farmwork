@@ -1,0 +1,55 @@
+<!-- Adapted from Bootstrap https://getbootstrap.com/docs/4.5/getting-started/introduction/ 
+Uses Jumbotron Uses form-group Use column dynamic styling 
+-->
+{{> navbar}}
+<div class="jumbotron jumbotron-fluid dive-display-header">
+    <div class="container">
+        <h1 class="display-4">Edit A Dive</h1>
+    </div>
+</div>
+<div class="container">
+    <form action="/dives/edit?_method=PUT" method="POST"  class="needs-validation" novalidate>
+        <div class="form-group col-md-5">
+            <label for="date">Date of Dive</label>
+            
+            <input type="date" class="form-control" name="date" id="date" value="{{dive.[0].date}}" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+         
+        <div class="form-group col-md-5">
+            <select class="custom-select" id="locationID" name="locationID">
+                <option selected value="{{dive.[0].locationID}}">{{dive.[0].name}}</option>
+                {{#each dive}}
+                    <option value="{{this.locationID}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="form-group col-md-5">
+            <label for="timeDuration">Duration of Dive in minutes</label>
+            <input type="number" class="form-control" name="timeDuration" id="timeDuration" value="{{dive.[0].timeDuration}}">
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="form-group col-md-5">
+            <label for="visibility">Visibility of Water</label>
+            <input type="text" class="form-control" name="visibility" id="visibility" value="{{dive.[0].visibility}}" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="form-group col-md-5">
+            <label for="temperature">Temperature of Water</label>
+            <input type="number" class="form-control" name="temp" id="temp" value="{{dive.[0].temp}}" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <input type = "hidden" name = "diverID" value = "{{dive.[0].diverID}}" />
+        <input type = "hidden" name = "diveID" value = "{{dive.[0].diveID}}" />
+
+        <button class="btn btn-primary btn-sm">Submit Edit</button>
+    </form>
+</div>

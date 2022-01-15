@@ -1,0 +1,52 @@
+<!-- Adapted from Bootstrap https://getbootstrap.com/docs/4.5/getting-started/introduction/ 
+Uses Jumbotron uses container
+-->
+{{> navbar}}
+<div class="jumbotron jumbotron-fluid dive-display-header">
+    <div class="container">
+        <h1 class="display-4">All of Locations tracked on Divetastic</h1>
+    </div>
+</div>
+<div class="container">
+{{#if currentUser}}
+    <a class="btn btn-success btn-lg" href="/locations/new" role="button">Add a new Location</a>
+{{else}}
+    <h3>Note:  You must be logged in to interact with the locations or add a new location</h3>
+{{/if}}
+
+</div>
+
+<div class="container-fluid">
+    <div class="row justify-content-start">
+        {{#each locations}}
+        <div class="card col-12 col-sm-6 col-md-4 dive-card">
+            <div class="card-body">
+                <h3 class="card-title">{{this.name}}</h3>
+                <h4 class="card-subtitle">located by {{this.locCity}}, {{this.locState}} in {{this.locCountry}}</h4>
+                    <p class="card-text">{{this.description}}</p>
+                    {{#each this.features}}
+                    <h5>Features you might see on this dive</h5>
+                    <h6>{{this.locFeatureName}}</h6>
+                    <img src="{{this.featureURL}}" alt="" class="locFeatureimg">
+                    {{#if ../../currentUser}}
+                        <form action="/locations/deleteFeature?_method=DELETE" method="POST">
+                            <input type = "hidden" name = "indLocFeatID" value = "{{this.indLocFeatID}}" />
+                            <button class="btn-1 btn-sm">Delete this Feature from this location</button>
+                        </form>
+                    {{/if}}
+                    {{/each}}
+                    {{#if ../currentUser}}
+                    <form action="/locations/edit" method="POST">
+                        <input type = "hidden" name = "locationID" value = "{{this.locationID}}" />
+                        <button class="btn-1 btn-sm">Update location</button>
+                    </form>
+                    <form action="/locations/addMoreFeature" method="POST">
+                        <input type = "hidden" name = "locationID" value = "{{this.locationID}}" />
+                        <button class="btn-1 btn-sm">Add Features</button>
+                    </form>
+                    {{/if}}
+            </div>
+        </div>  
+        {{/each}}
+    </div>
+</div>

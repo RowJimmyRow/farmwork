@@ -1,0 +1,30 @@
+<!-- Adapted from Bootstrap https://getbootstrap.com/docs/4.5/getting-started/introduction/ 
+Uses Jumbotron uses container
+-->
+{{> navbar}}
+<h1>This is a feature edit page</h1>
+<div class="jumbotron jumbotron-fluid dive-display-header">
+    <div class="container">
+        <h1 class="display-4">Edit A Feature</h1>
+    </div>
+</div>
+<div class="container">
+     <form action="/features/editFeature?_method=PUT" method="POST"  class="needs-validation"  enctype="multipart/form-data" novalidate>
+        <div class="form-group col-md-5">
+            <label for="name">Name of Feature</label>
+            <input type="text" class="form-control" name="locFeatureName" id="locFeatureName" value="{{feature.locFeatureName}}" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="form-group col-md-5">
+            <label for="name">Upload a new Image(OPTIONAL)</label>
+            <input type="file" class="form-control" name="image" id="image">
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+    <input type = "hidden" name = "featureID" value = "{{feature.featureID}}" />
+    <button class="btn btn-primary btn-sm">Edit Dive Location</button>
+    </form>
+</div>
