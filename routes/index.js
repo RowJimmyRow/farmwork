@@ -35,5 +35,9 @@ router.get("/logout", (request, response) => {
     request.session.user_id = null;
     response.redirect("/");
 });    
-        
+     
+// search for a farm
+router.get("/farms", (request, response) => {
+    response.render('farms');
+})
 module.exports = router;
